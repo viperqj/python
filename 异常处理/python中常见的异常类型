@@ -1,0 +1,22 @@
+#1数学运算异常 ZeroDivisionError
+# print(1/0)
+# ZeroDivisionError
+
+# 2.IndexError
+# ls=[0,1,2]
+# print(ls[4])
+# IndexError: list index out of range
+
+# 3.KeyError  映射中没有这个键
+# dic={'name':'2b','age':'30'}
+# print(dic['gender'])
+
+# 4.NameError 未声明的变量
+# print(n)
+# NameError: name 'n' is not defined
+
+# 5.SyntaxError python 语法错误
+# print("123"):
+
+# 6.ValueError 传入无效的参数
+# a=int('hello')
