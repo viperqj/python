@@ -1,0 +1,26 @@
+import pandas as pd
+print('---------------------------------------------------------------------------------series')
+s=pd.Series(data=[10,20,30],index=[1,2,3])
+print(s)
+print('-----------------------------重新设置索引')
+print(s.reindex(range(1,6)))#多出的两个为nan
+print('---------------------------------------')
+print(s.reindex(range(1,6),fill_value=0))#使用0填充
+print('---------------------------------------')
+print(s.reindex(range(1,6),method='ffill'))#向前填充
+print('---------------------------------------')
+print(s.reindex(range(1,6),method='bfill'))#向后填充
+print('---------------------------------------------------------------------------------dataframe')
+pd.set_option('display.unicode.east_asian_width',True)
+df=pd.DataFrame(
+    data=[[85,87,56],[89,45,71],[70,78,46]],
+    index=['z','l','w'],
+    columns=['语文','数学','英语']
+)
+print(df)
+print('-----------------------------重新设置行索引')
+print(df.reindex(['z','l','w','t','h']))
+print('-----------------------------重新设置列索引')
+print(df.reindex(columns=['语文','数学','英语','物理','化学']))
+print('-----------------------------同时设置行列索引')
+print(df.reindex(index=['z','l','w','t','h'],columns=['语文','数学','英语','物理','化学'],fill_value=0),)

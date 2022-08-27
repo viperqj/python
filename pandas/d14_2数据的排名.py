@@ -1,0 +1,10 @@
+import pandas as pd
+pd.set_option('display.unicode.east_asian_width',True)
+s=pd.read_excel('数据排序.xlsx')
+s=s.sort_values(by='语文')
+s['语文排名']=s['语文'].rank(method='min')
+print(s)
+s['语文排名']=s['语文'].rank(method='max')
+print(s)
+s['语文排名']=s['语文'].rank(method='first')
+print(s)
