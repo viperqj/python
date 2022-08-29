@@ -10,12 +10,14 @@ class BzSpider():
         res=requests.get(url=url,headers=self.headers).text
         self.parse_html(res,num)
     def parse_html(self, res,num):
-        aid = re.findall('aid=(.*?)&cid=.*?&page=1"', res)[0]
-        data_text=requests.get(url=f'https://api.bilibili.com/x/v2/reply/main?csrf=46ae42b8fed56a875b2ba3846133a00a&mode=3&next={num}&oid={aid}&plat=1&type=1',headers=self.headers).json()
-        data_list=[i['content']['message']for i in data_text['data']['replies']]
-        for i in data_list:
-            print(i)
-            self.save(i)
+        num=int(num)
+        for i in range(0,num):
+            aid = re.findall('aid=(.*?)&cid=.*?&page=1"', res)[0]
+            data_text=requests.get(url=f'https://api.bilibili.com/x/v2/reply/main?csrf=46ae42b8fed56a875b2ba3846133a00a&mode=3&next={i}&oid={aid}&plat=1&type=1',headers=self.headers).json()
+            data_list=[i['content']['message']for i in data_text['data']['replies']]
+            for i in data_list:
+                print(i)
+                self.save(i)
     def save(self, data):
         with open('评论.txt', 'a', encoding='utf-8') as fp:
             fp.write(data + '\n')
